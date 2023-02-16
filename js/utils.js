@@ -1,8 +1,8 @@
 function setDefaultFilters() {
   return {
-    query: null,
+    query: 'por defectisimo',
     language: null,
-    pageSize: 10,
+    pageSize: 4,
   };
 }
 function buildRequest(filters, apiKey) {
@@ -32,23 +32,32 @@ async function getNews(request) {
   let data = await res.json();
   renderizeNews(data);
 }
-
+function clearGrid() {
+  const newsGrid = document.querySelector('#newsGrid');
+  while (newsGrid.firstChild) {
+    newsGrid.removeChild(newsGrid.firstChild);
+  }
+}
 function renderizeNews(data) {
+  const newsGrid = document.querySelector('#newsGrid');
+  clearGrid();
   for (let item = 0; item < data.response.results.length; item++) {
     const img = document.createElement('img');
     img.src = data.response.results[item]['fields']['thumbnail'];
-    document.body.appendChild(img);
+    newsGrid.appendChild(img);
 
     const header = document.createElement('h5');
     const content = document.createTextNode(
       data.response.results[item]['fields']['headline']
     );
     header.appendChild(content);
-    document.body.appendChild(header);
+    newsGrid.appendChild(header);
   }
 }
-function applyFilter() {
-  console.log(this.value);
+function applyFilter(filter, value) {
+  filters[filter] = value;
+  request = buildRequest(filters, apiKey);
+  getNews(request);
 }
 function debounce(func, duration) {
   let timeout;
