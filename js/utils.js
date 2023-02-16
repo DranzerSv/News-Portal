@@ -27,3 +27,7 @@ function objectsToParams(filters) {
 
   return parameters;
 }
+async function getNews(request) {
+  const res = await fetch(request);
+  console.log(await res.json());
+}
