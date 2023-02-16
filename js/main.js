@@ -13,4 +13,6 @@ let userSearch = document.querySelector('#userSearch');
 let userLanguage = document.querySelector('#userLanguage');
 let userPageSize = document.querySelector('#userPageSize');
 
-console.log(userSearch.value, userLanguage.value, userPageSize.value);
+userSearch.addEventListener('input', debounce(applyFilter, 890));
+userLanguage.addEventListener('change', applyFilter);
+userPageSize.addEventListener('change', applyFilter);

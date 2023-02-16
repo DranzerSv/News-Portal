@@ -47,3 +47,19 @@ function renderizeNews(data) {
     document.body.appendChild(header);
   }
 }
+function applyFilter() {
+  console.log(this.value);
+}
+function debounce(func, duration) {
+  let timeout;
+
+  return function (...args) {
+    const effect = () => {
+      timeout = null;
+      return func.apply(this, args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(effect, duration);
+  };
+}
