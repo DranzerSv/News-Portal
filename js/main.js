@@ -8,3 +8,9 @@ if (!filters) {
 let request = buildRequest(filters, apiKey);
 
 getNews(request);
+
+let userSearch = document.querySelector('#userSearch');
+let userLanguage = document.querySelector('#userLanguage');
+let userPageSize = document.querySelector('#userPageSize');
+
+console.log(userSearch.value, userLanguage.value, userPageSize.value);

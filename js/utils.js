@@ -1,7 +1,7 @@
 function setDefaultFilters() {
   return {
-    query: 'India',
-    language: 'es',
+    query: null,
+    language: null,
     pageSize: 10,
   };
 }
