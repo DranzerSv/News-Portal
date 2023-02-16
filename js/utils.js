@@ -1,7 +1,7 @@
 function setDefaultFilters() {
   return {
-    query: 'bleach',
-    language: null,
+    query: 'India',
+    language: 'es',
     pageSize: 10,
   };
 }
@@ -29,5 +29,21 @@ function objectsToParams(filters) {
 }
 async function getNews(request) {
   const res = await fetch(request);
-  console.log(await res.json());
+  let data = await res.json();
+  renderizeNews(data);
+}
+
+function renderizeNews(data) {
+  for (let item = 0; item < data.response.results.length; item++) {
+    const img = document.createElement('img');
+    img.src = data.response.results[item]['fields']['thumbnail'];
+    document.body.appendChild(img);
+
+    const header = document.createElement('h5');
+    const content = document.createTextNode(
+      data.response.results[item]['fields']['headline']
+    );
+    header.appendChild(content);
+    document.body.appendChild(header);
+  }
 }
