@@ -2,7 +2,7 @@ function setDefaultFilters() {
   return {
     query: null,
     language: null,
-    pageSize: 1,
+    pageSize: 10,
   };
 }
 function buildRequest(filters, apiKey) {
@@ -19,13 +19,8 @@ function objectsToParams(filters) {
   if (filters['language']) {
     parameters += '&lang=' + filters['language'];
   }
-  if (filters['pageSize'] !== 10) {
-    parameters += '&page-size=' + filters['pageSize'];
-  } else {
-    parameters += '&page-size=10';
-  }
 
-  return parameters;
+  return parameters + '&page-size=' + filters['pageSize'];
 }
 async function getNews(request) {
   const res = await fetch(request);
@@ -42,6 +37,7 @@ function clearGrid() {
 function renderizeImage(id, data) {
   const img = document.createElement('img');
   img.src = data.response.results[id]['fields']['thumbnail'];
+  img.classList.add('image');
 
   return img;
 }
@@ -63,9 +59,8 @@ function renderizeNews(data) {
     div.appendChild(renderizeImage(id, data));
 
     div.appendChild(writeHeadLine(id, data));
+    div.classList.add('news__container');
     newsGrid.appendChild(div);
-
-    //newsGrid.appendChild(header);
   }
 }
 function applyFilter(filter, value) {
