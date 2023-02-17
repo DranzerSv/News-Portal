@@ -56,6 +56,7 @@ function renderizeNews(data) {
 }
 function applyFilter(filter, value) {
   filters[filter] = value;
+  saveFilters(filters);
   request = buildRequest(filters, apiKey);
   getNews(request);
 }
@@ -71,4 +72,7 @@ function debounce(func, duration) {
     clearTimeout(timeout);
     timeout = setTimeout(effect, duration);
   };
+}
+function saveFilters(filters) {
+  window.localStorage.setItem('filters', JSON.stringify(filters));
 }

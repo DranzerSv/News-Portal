@@ -1,6 +1,6 @@
 const apiKey = 'api-key=4a997527-1fe8-435b-8f5f-bc405e8b6954';
 
-let filters = localStorage.getItem('savedFilters');
+let filters = JSON.parse(localStorage.getItem('filters'));
 
 if (!filters) {
   filters = setDefaultFilters();
