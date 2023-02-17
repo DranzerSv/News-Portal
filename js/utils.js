@@ -1,8 +1,8 @@
 function setDefaultFilters() {
   return {
-    query: 'por defectisimo',
+    query: null,
     language: null,
-    pageSize: 4,
+    pageSize: 10,
   };
 }
 function buildRequest(filters, apiKey) {

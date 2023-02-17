@@ -19,5 +19,9 @@ userSearch.addEventListener(
     applyFilter('query', this.value);
   }, 890)
 );
-userLanguage.addEventListener('change', applyFilter);
-userPageSize.addEventListener('change', applyFilter);
+userLanguage.addEventListener('change', function () {
+  applyFilter('language', this.value);
+});
+userPageSize.addEventListener('change', function () {
+  applyFilter('pageSize', this.value);
+});
