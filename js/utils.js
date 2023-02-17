@@ -2,7 +2,7 @@ function setDefaultFilters() {
   return {
     query: null,
     language: null,
-    pageSize: 10,
+    pageSize: 1,
   };
 }
 function buildRequest(filters, apiKey) {
@@ -38,20 +38,34 @@ function clearGrid() {
     newsGrid.removeChild(newsGrid.firstChild);
   }
 }
+
+function renderizeImage(id, data) {
+  const img = document.createElement('img');
+  img.src = data.response.results[id]['fields']['thumbnail'];
+
+  return img;
+}
+function writeHeadLine(id, data) {
+  const header = document.createElement('h5');
+  const content = document.createTextNode(
+    data.response.results[id]['fields']['headline']
+  );
+  header.appendChild(content);
+  return header;
+}
 function renderizeNews(data) {
   const newsGrid = document.querySelector('#newsGrid');
-  clearGrid();
-  for (let item = 0; item < data.response.results.length; item++) {
-    const img = document.createElement('img');
-    img.src = data.response.results[item]['fields']['thumbnail'];
-    newsGrid.appendChild(img);
 
-    const header = document.createElement('h5');
-    const content = document.createTextNode(
-      data.response.results[item]['fields']['headline']
-    );
-    header.appendChild(content);
-    newsGrid.appendChild(header);
+  clearGrid();
+  for (let id = 0; id < data.response.results.length; id++) {
+    const div = document.createElement('div');
+
+    div.appendChild(renderizeImage(id, data));
+
+    div.appendChild(writeHeadLine(id, data));
+    newsGrid.appendChild(div);
+
+    //newsGrid.appendChild(header);
   }
 }
 function applyFilter(filter, value) {
