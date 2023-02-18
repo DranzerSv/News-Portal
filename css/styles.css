@@ -1,6 +1,16 @@
 body {
   font-family: 'Noticia Text', serif;
 }
+header {
+  background-color: #b90005;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo {
+  width: 9vh;
+}
 .newsGrid {
   width: 90vw;
   margin-left: 5vw;
