@@ -25,6 +25,7 @@ function objectsToParams(filters) {
 async function getNews(request) {
   const res = await fetch(request);
   let data = await res.json();
+  //console.log(data.response.results[1]['webUrl']);
   renderizeNews(data);
 }
 function clearGrid() {
@@ -36,7 +37,13 @@ function clearGrid() {
 
 function renderizeImage(id, data) {
   const img = document.createElement('img');
-  img.src = data.response.results[id]['fields']['thumbnail'];
+
+  if (data.response.results[id]['fields']['thumbnail']) {
+    img.src = data.response.results[id]['fields']['thumbnail'];
+  } else {
+    img.src = './resources/default.jpg';
+  }
+
   img.classList.add('image');
 
   return img;
@@ -49,18 +56,35 @@ function writeHeadLine(id, data) {
   header.appendChild(content);
   return header;
 }
+function renderNoResults() {
+  const div = document.createElement('div');
+  const content = document.createTextNode('No results found.');
+  div.classList.add('no__results');
+  div.appendChild(content);
+  newsGrid.appendChild(div);
+}
 function renderizeNews(data) {
   const newsGrid = document.querySelector('#newsGrid');
 
   clearGrid();
+
+  if (data.response.results.length <= 0) {
+    renderNoResults();
+    return;
+  }
   for (let id = 0; id < data.response.results.length; id++) {
+    const url = document.createElement('a');
     const div = document.createElement('div');
+
+    url.href = data.response.results[id]['webUrl'];
+    url.target = '_blank';
 
     div.appendChild(renderizeImage(id, data));
 
     div.appendChild(writeHeadLine(id, data));
     div.classList.add('news__container');
-    newsGrid.appendChild(div);
+    url.appendChild(div);
+    newsGrid.appendChild(url);
   }
 }
 function applyFilter(filter, value) {

@@ -1,4 +1,5 @@
 body {
+  font-family: 'Noticia Text', serif;
 }
 .newsGrid {
   width: 90vw;
@@ -19,8 +20,21 @@ body {
   max-height: 200px;
   border: solid 1px rebeccapurple;
   border-bottom: solid 15px rebeccapurple;
-  font-family: 'Times New Roman', Times, serif;
+}
+.news__container:hover {
 }
 .image {
   width: 100%;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+.no__results {
+  background-color: aquamarine;
+  grid-column: 1/5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
 }
