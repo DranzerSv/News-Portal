@@ -5,6 +5,18 @@ function setDefaultFilters() {
     pageSize: 10,
   };
 }
+function showStoredFilters(filters) {
+  let search = document.querySelector(`#userSearch`);
+  let language = document.querySelector(
+    `#userLanguage option[value="${filters['language']}"]`
+  );
+  let pageSize = document.querySelector(
+    `#userPageSize option[value="${filters['pageSize']}"]`
+  );
+  search.value = filters['query'];
+  pageSize.selected = true;
+  language.selected = true;
+}
 function buildRequest(filters, apiKey) {
   let parameters = objectsToParams(filters);
 
@@ -90,7 +102,7 @@ function renderizeNews(data) {
 function applyFilter(filter, value) {
   filters[filter] = value;
   saveFilters(filters);
-  request = buildRequest(filters, apiKey);
+  request = buildRequest(filters, API_KEY);
   getNews(request);
 }
 function debounce(func, duration) {

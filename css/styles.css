@@ -73,6 +73,11 @@ nav {
   background-color: whitesmoke;
   outline: 0;
 }
+select {
+  background-color: whitesmoke;
+  border: transparent;
+  outline: 0;
+}
 .language__container {
   display: flex;
   justify-content: end;

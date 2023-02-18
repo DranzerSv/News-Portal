@@ -1,17 +1,18 @@
-const apiKey = 'api-key=4a997527-1fe8-435b-8f5f-bc405e8b6954';
+const API_KEY = 'api-key=4a997527-1fe8-435b-8f5f-bc405e8b6954';
+let userSearch = document.querySelector('#userSearch');
+let userLanguage = document.querySelector('#userLanguage');
+let userPageSize = document.querySelector('#userPageSize');
 
 let filters = JSON.parse(localStorage.getItem('filters'));
 
 if (!filters) {
   filters = setDefaultFilters();
 }
-let request = buildRequest(filters, apiKey);
+
+showStoredFilters(filters);
+let request = buildRequest(filters, API_KEY);
 
 getNews(request);
-
-let userSearch = document.querySelector('#userSearch');
-let userLanguage = document.querySelector('#userLanguage');
-let userPageSize = document.querySelector('#userPageSize');
 
 userSearch.addEventListener(
   'input',
