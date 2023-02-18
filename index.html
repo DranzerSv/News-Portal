@@ -16,20 +16,31 @@
     <header>
       <img src="./resources/news.png" alt="news__logo" class="logo" />
     </header>
-    <input type="text" class="text__filter" id="userSearch" />
+    <nav>
+      <label for="userSearch" class="search__container">
+        Search
+        <input type="text" class="search__input" id="userSearch" />
+      </label>
+      <label for="userLanguage" class="language__container">
+        Language
+        <select name="language" id="userLanguage">
+          <option value="">All</option>
+          <option value="es">Spanish</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <label for="userPageSize" class="pageSize__container">
+        Page Size
+        <select name="pageSize" id="userPageSize">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+          <option value="40">40</option>
+          <option value="50">50</option>
+        </select>
+      </label>
+    </nav>
 
-    <select name="language" id="userLanguage">
-      <option value="">All</option>
-      <option value="es">Spanish</option>
-      <option value="en">English</option>
-    </select>
-    <select name="pageSize" id="userPageSize">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
-      <option value="40">40</option>
-      <option value="50">50</option>
-    </select>
     <div id="newsGrid" class="newsGrid"></div>
     <script src="./js/utils.js"></script>
     <script src="./js/main.js"></script>
