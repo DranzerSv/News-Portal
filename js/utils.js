@@ -1,7 +1,7 @@
 function setDefaultFilters() {
   return {
-    query: null,
-    language: null,
+    query: '',
+    language: '',
     pageSize: 10,
   };
 }
@@ -10,12 +10,13 @@ function showStoredFilters(filters) {
   let language = document.querySelector(
     `#userLanguage option[value="${filters['language']}"]`
   );
+  console.log(filters['language']);
   let pageSize = document.querySelector(
     `#userPageSize option[value="${filters['pageSize']}"]`
   );
   search.value = filters['query'];
-  pageSize.selected = true;
   language.selected = true;
+  pageSize.selected = true;
 }
 function buildRequest(filters, apiKey) {
   let parameters = objectsToParams(filters);
