@@ -25,7 +25,6 @@ function renderizeImage(id, data) {
 
   if (imgUrl && isHtttps(imgUrl)) {
     img.src = data.response.results[id]['fields']['thumbnail'];
-    console.log(data.response.results[id]['fields']['thumbnail']);
   } else {
     img.src = './resources/default.jpg';
   }
