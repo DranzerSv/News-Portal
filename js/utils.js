@@ -27,7 +27,6 @@ function buildRequest(filters, apiKey) {
 async function getNews(request) {
   const res = await fetch(request);
   let data = await res.json();
-  //console.log(data.response.results[1]['webUrl']);
   renderizeNews(data);
 }
 
