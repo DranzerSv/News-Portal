@@ -1,7 +1,7 @@
 const API_KEY = 'api-key=4a997527-1fe8-435b-8f5f-bc405e8b6954';
-let userSearch = document.querySelector('#userSearch');
-let userLanguage = document.querySelector('#userLanguage');
-let userPageSize = document.querySelector('#userPageSize');
+const userSearch = document.querySelector('#userSearch');
+const userLanguage = document.querySelector('#userLanguage');
+const userPageSize = document.querySelector('#userPageSize');
 
 let filters = JSON.parse(localStorage.getItem('filters'));
 
