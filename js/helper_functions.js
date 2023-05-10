@@ -11,11 +11,14 @@ function clearGrid() {
     newsGrid.removeChild(newsGrid.firstChild);
   }
 }
+
 function writeHeadLine(id, data) {
-  const header = document.createElement('h5');
+  const header = document.createElement('p');
+  const headline = data.response.results[id]['fields']['headline'].slice(0, 90);
   const content = document.createTextNode(
-    data.response.results[id]['fields']['headline']
+    headline.length < 90 ? headline : `${headline}...`
   );
+
   header.appendChild(content);
   return header;
 }
@@ -59,7 +62,7 @@ function renderizeNews(data) {
     div.appendChild(renderizeImage(id, data));
 
     div.appendChild(writeHeadLine(id, data));
-    div.classList.add('news__container');
+    div.classList.add('card');
     url.appendChild(div);
     newsGrid.appendChild(url);
   }
