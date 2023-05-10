@@ -43,6 +43,7 @@ header {
   border-bottom: solid 4px #b90005;
 }
 .card p {
+  font-size: 16px;
   font-weight: 700;
   min-height: 50px;
 }
