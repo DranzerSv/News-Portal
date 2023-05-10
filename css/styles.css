@@ -128,4 +128,5 @@ select {
   justify-content: start;
   align-items: center;
   gap: 5px;
+  margin-left: 20px;
 }
